@@ -1,0 +1,21 @@
+{
+  "name": "NodeJs_con_HapiJs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "lint": "standard",
+    "lint-fix": "standard --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "standard": "^14.3.3"
+  },
+  "dependencies": {
+    "hapi": "^18.1.0"
+  }
+}
