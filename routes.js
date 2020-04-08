@@ -19,15 +19,16 @@ module.exports = [{
 {
   path: '/create-user',
   method: 'POST',
-  // options: {
-  //   validate: {
-  //     payload: {
-  //       name: Joi.string().required().min(3),
-  //       email: Joi.string().required().email(),
-  //       password: Joi.string().required().min(6)
-  //     }
-  //   }
-  // },
+  options: {
+    validate: {
+      payload: Joi.object({
+        name: Joi.string().required().min(3),
+        email: Joi.string().required().email(),
+        password: Joi.string().required().min(6)
+      }),
+      failAction: user.failValidation
+    }
+  },
   handler: user.createUser
 },
 
@@ -46,25 +47,33 @@ module.exports = [{
 {
   path: '/validate-user',
   method: 'POST',
-  // options: {
-  //   validate: {
-  //     payload: {
-  //       email: Joi.string().required().email(),
-  //       password: Joi.string().required().min(6)
-  //     }
-  //   }
-  // },
+  options: {
+    validate: {
+      payload: Joi.object({
+        email: Joi.string().required().email(),
+        password: Joi.string().required().min(6)
+      }),
+      failAction: user.failValidation
+    }
+  },
   handler: user.validateUser
 },
 
 {
   method: 'GET',
-  path: '/{param*}',
+  path: '/assests/{param*}',
   handler: {
     directory: {
       path: '.',
       index: ['index.html']
     }
   }
+},
+
+{
+  method: ['GET', 'POST'],
+  path: '/{any*}',
+  handler: site.notFound
 }
+
 ]
