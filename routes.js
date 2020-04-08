@@ -12,6 +12,13 @@ module.exports = [{
 
 {
   method: 'GET',
+  path: '/register',
+  handler: site.register
+},
+
+{
+  path: '/create-user',
+  method: 'POST',
   // options: {
   //   validate: {
   //     payload: {
@@ -21,14 +28,33 @@ module.exports = [{
   //     }
   //   }
   // },
-  path: '/register',
-  handler: site.register
+  handler: user.createUser
 },
 
 {
+  method: 'GET',
+  path: '/login',
+  handler: site.login
+},
+
+{
+  method: 'GET',
+  path: '/logout',
+  handler: user.logout
+},
+
+{
+  path: '/validate-user',
   method: 'POST',
-  path: '/create-user',
-  handler: user.createUser
+  // options: {
+  //   validate: {
+  //     payload: {
+  //       email: Joi.string().required().email(),
+  //       password: Joi.string().required().min(6)
+  //     }
+  //   }
+  // },
+  handler: user.validateUser
 },
 
 {
