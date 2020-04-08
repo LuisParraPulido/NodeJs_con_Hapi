@@ -12,15 +12,15 @@ module.exports = [{
 
 {
   method: 'GET',
-  options: {
-    validate: {
-      payload: {
-        name: Joi.string().required().min(3),
-        email: Joi.string().required().email(),
-        password: Joi.string().required().min(6)
-      }
-    }
-  },
+  // options: {
+  //   validate: {
+  //     payload: {
+  //       name: Joi.string().required().min(3),
+  //       email: Joi.string().required().email(),
+  //       password: Joi.string().required().min(6)
+  //     }
+  //   }
+  // },
   path: '/register',
   handler: site.register
 },
