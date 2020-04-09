@@ -49,7 +49,6 @@ async function validateUser (req, h) {
       error: 'Problemas validando el usuario'
     })
   }
-
   return h.redirect('/').state('user', {
     name: result.name,
     email: result.email
@@ -59,7 +58,8 @@ async function validateUser (req, h) {
 function failValidation(req, h, err) {
   const templates = {
     '/create-user': 'register',
-    '/validate-user': 'login'
+    '/validate-user': 'login',
+    '/create-question': 'ask'
   }
   return h.view(templates[req.path], {
     title: 'Error de validación',
