@@ -1,12 +1,20 @@
 `use strict`
 
 const Hapi = require('@hapi/hapi')
-const handleblars = require('handlebars')
+const handlebars = require('handlebars')
 const inert = require('@hapi/inert')
 const path = require('path')
 const routes = require('./routes')
 const site = require('./controllers/site')
 const vision = require('@hapi/vision')
+
+handlebars.registerHelper('answerNumber', (answers) => {
+  if (answers === undefined) {
+    return 0;
+  }
+  const keys = Object.keys(answers)
+  return keys.length
+})
 
 const server = Hapi.server({
   port: process.env.PORT || 3000,
@@ -32,7 +40,7 @@ async function init () {
 
     server.views({
       engines: {
-        hbs: handleblars
+        hbs: handlebars
       },
       relativeTo: __dirname,
       path: 'views',
@@ -52,10 +60,10 @@ async function init () {
   console.log(`Servidor lanzado en: ${server.info.uri}`)
 }
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', error => {
   console.error('unhandleRejection', error.message, error);
 })
-process.on('unhandleExeption', err => {
+process.on('unhandleExeption', error => {
   console.error('unhandleExeption', error.message, error);
 })
 
