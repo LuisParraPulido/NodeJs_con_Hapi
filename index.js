@@ -1,5 +1,6 @@
 `use strict`
 
+
 const Hapi = require('@hapi/hapi')
 const handlebars = require('handlebars')
 const inert = require('@hapi/inert')
